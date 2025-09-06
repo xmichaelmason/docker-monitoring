@@ -41,7 +41,7 @@ This stack provides:
   - Monitoring Stack Dashboard: Monitor the monitoring infrastructure itself
 
 ### Loki (Port 3100)
-- **Purpose**: Log aggregation and storage
+- **Purpose**: Log aggregation and storage (running in monolithic mode)
 - **API**: http://your-server:3100
 - **Storage**: Stores logs from systemd journal and Docker containers
 
@@ -57,6 +57,16 @@ This stack provides:
 - **Access**: http://your-server:9090
 - **Targets**: Self-monitoring of the stack components
 
+## Prerequisites
+
+- Docker and Docker Compose installed
+- User added to the `docker` group (to run Docker commands without sudo):
+  ```bash
+  sudo usermod -aG docker $USER
+  # Log out and log back in for group changes to take effect
+  ```
+- Proper ownership of the deployment directory
+
 ## Quick Start
 
 ### 1. Deploy the Stack
@@ -65,11 +75,14 @@ This stack provides:
 # Clone and navigate to the project
 cd /srv/docker-monitoring
 
-# Start all services
-sudo docker compose up -d
+# Ensure proper ownership
+sudo chown -R $USER:$USER /srv/docker-monitoring
+
+# Start all services (no sudo needed with proper ownership)
+docker compose up -d
 
 # Check status
-sudo docker compose ps
+docker compose ps
 ```
 
 ### 2. Access Grafana
@@ -156,23 +169,24 @@ curl "http://localhost:3100/loki/api/v1/query_range?query=%7Bjob%3D%22systemd-jo
 
 ### Check Service Status
 ```bash
-sudo docker compose ps
-sudo docker compose logs [service-name]
+docker compose ps
+docker compose logs [service-name]
 ```
 
 ### Common Issues
 
 1. **No logs appearing**: 
    - Check if systemd journal is readable: `sudo journalctl --disk-usage`
-   - Verify Promtail is running: `sudo docker compose logs promtail`
+   - Verify Promtail is running: `docker compose logs promtail`
 
 2. **Grafana dashboards empty**:
    - Check datasource connectivity in Grafana UI
    - Verify Loki has data: `curl "http://localhost:3100/loki/api/v1/label/job/values"`
 
 3. **Permission issues**:
-   - Ensure Docker has access to log directories
+   - Ensure the `/srv/docker-monitoring` directory is owned by your user: `sudo chown -R $USER:$USER /srv/docker-monitoring`
    - Check volume mounts in docker-compose.yml
+   - Verify your user is in the `docker` group: `groups $USER`
 
 ### View Available Data
 ```bash
@@ -192,7 +206,7 @@ curl -s "http://localhost:3100/loki/api/v1/query_range?query=%7Bjob%3D%22systemd
 ### Backup Important Data
 ```bash
 # Backup Grafana dashboards and settings
-sudo docker compose exec grafana tar czf - /var/lib/grafana | gzip > grafana-backup.tar.gz
+docker compose exec grafana tar czf - /var/lib/grafana | gzip > grafana-backup.tar.gz
 
 # Backup configurations
 tar czf monitoring-config-backup.tar.gz grafana/ loki/ prometheus/ promtail/ docker-compose.yml
@@ -201,10 +215,10 @@ tar czf monitoring-config-backup.tar.gz grafana/ loki/ prometheus/ promtail/ doc
 ### Updates
 ```bash
 # Pull latest images
-sudo docker compose pull
+docker compose pull
 
 # Restart with new images
-sudo docker compose up -d
+docker compose up -d
 ```
 
 ## Security Notes

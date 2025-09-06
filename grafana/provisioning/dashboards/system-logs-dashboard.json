@@ -20,10 +20,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -43,10 +40,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=\"systemd-journal\"}",
           "refId": "A"
         }
@@ -55,10 +49,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -130,10 +121,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "sum by (job) (rate({job=~\"systemd-journal|docker|varlog\"}[5m]))",
           "legendFormat": "{{job}}",
           "refId": "A"
@@ -143,10 +131,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -253,19 +238,13 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "sum(rate({job=~\".*\"} |~ \"(?i)(error|err|exception|fail|fatal)\"[5m]))",
           "legendFormat": "Errors",
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "sum(rate({job=~\".*\"} |~ \"(?i)(warn|warning)\"[5m]))",
           "legendFormat": "Warnings",
           "refId": "B"
@@ -275,10 +254,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -298,10 +274,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=\"systemd-journal\"} |~ \"(?i)(failed|failure|invalid|denied)\"",
           "refId": "A"
         }
@@ -310,10 +283,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -333,10 +303,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=~\"nginx|apache\"} |~ \"(?i)(4\\d\\d|5\\d\\d)\"",
           "refId": "A"
         }
@@ -345,10 +312,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -368,10 +332,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=\"systemd-journal\"} |~ \"(?i)(kernel|kern)\"",
           "refId": "A"
         }
@@ -380,10 +341,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -403,10 +361,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=\"docker\"}",
           "refId": "A"
         }
@@ -431,10 +386,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": {
-          "type": "loki",
-          "uid": "P8E80F9AEF21F6940"
-        },
+        "datasource": "Loki",
         "definition": "label_values(job)",
         "hide": 0,
         "includeAll": true,

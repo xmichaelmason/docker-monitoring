@@ -20,10 +20,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -95,10 +92,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "100 - (avg by (instance) (rate(prometheus_tsdb_compaction_duration_seconds_count[5m])) * 100)",
           "legendFormat": "Prometheus Uptime",
           "refId": "A"
@@ -108,10 +102,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -152,10 +143,7 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "up",
           "format": "table",
           "instant": true,
@@ -184,10 +172,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -259,10 +244,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "rate(prometheus_http_requests_total[5m])",
           "legendFormat": "{{handler}} - {{code}}",
           "refId": "A"
@@ -272,10 +254,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -347,19 +326,13 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "prometheus_tsdb_symbol_table_size_bytes",
           "legendFormat": "Symbol Table Size",
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "prometheus_tsdb_head_series",
           "legendFormat": "Head Series",
           "refId": "B"
@@ -369,10 +342,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 24,
@@ -392,10 +362,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "{job=~\".*\"} |= \"\"",
           "refId": "A"
         }
@@ -404,10 +371,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -479,10 +443,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "rate({job=~\".*\"}[1m])",
           "legendFormat": "{{job}}",
           "refId": "A"
@@ -492,10 +453,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
+      "datasource": "Loki",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -602,19 +560,13 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "rate({job=~\".*\"} |~ \"(?i)(error|err|exception|fail)\"[1m])",
           "legendFormat": "Errors",
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
+          "datasource": "Loki",
           "expr": "rate({job=~\".*\"} |~ \"(?i)(warn|warning)\"[1m])",
           "legendFormat": "Warnings",
           "refId": "B"
@@ -624,10 +576,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -697,10 +646,7 @@
       "pluginVersion": "8.0.0",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "up",
           "format": "table",
           "instant": true,
@@ -708,10 +654,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
+          "datasource": "Prometheus",
           "expr": "prometheus_build_info",
           "format": "table",
           "instant": true,
